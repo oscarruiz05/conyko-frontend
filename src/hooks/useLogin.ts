@@ -33,8 +33,12 @@ const useLogin = () => {
       localStorage.setItem("user_conyko", JSON.stringify(data.user));
       setLoading(false);
       return data;
-    } catch (error) {
+    } catch ({response:{data:{error}}}: any) {
       setLoading(false);
+      toast({
+        description: error,
+        variant: "destructive",
+      });
     }
   };
 
